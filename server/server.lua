@@ -1,21 +1,27 @@
 ESX = exports.es_extended:getSharedObject()
+local ox_inventory = exports.ox_inventory
+
 
 RegisterServerEvent('esx_methcar:start')
 AddEventHandler('esx_methcar:start', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	
-	if xPlayer.getInventoryItem('acetone').count >= 5 and xPlayer.getInventoryItem('lithium').count >= 2 and xPlayer.getInventoryItem('methlab').count >= 1 then
-		if xPlayer.getInventoryItem('meth').count >= 30 then
+	if xPlayer.getInventoryItem('acetone').count >= 5 and xPlayer.getInventoryItem('lithium').count >= 2 and xPlayer.getInventoryItem('methlab').count >= 1 then 
+		if xPlayer.getInventoryItem('meth').count >= 60 then
 				TriggerClientEvent('esx_methcar:notify', _source, "Jūs negalite turėti daugiau amfos")
 		else
 			TriggerClientEvent('esx_methcar:startprod', _source)
+			local methlab = ox_inventory:Search(_source, 1, 'methlab')
 			xPlayer.removeInventoryItem('acetone', 5)
 			xPlayer.removeInventoryItem('lithium', 2)
-		end
-
-		
-		
+			local patvarumas ox_inventory:SetDurability(_source, methlab.slot, 0.10)
+			if patvarumas then
+				print("test pavyko")
+			else
+				print("Test nepavyko")
+			end
+		end		
 	else
 		TriggerClientEvent('esx_methcar:notify', _source, "Nepakanka atsargų pradėti gaminti amfa")
 

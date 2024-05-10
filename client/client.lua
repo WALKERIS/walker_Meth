@@ -16,6 +16,7 @@ local CurrentVehicle
 local pause = false
 local selection = 0
 local quality = 0
+local hidetextui = lib.hideTextUI()
 
 local LastCar
 
@@ -37,6 +38,7 @@ AddEventHandler('esx_methcar:stop', function()
 		type = 'error'
 	})
 	FreezeEntityPosition(LastCar, false)
+	lib.hideTextUI()
 end)
 RegisterNetEvent('esx_methcar:stopfreeze')
 AddEventHandler('esx_methcar:stopfreeze', function(id)
@@ -161,7 +163,7 @@ Citizen.CreateThread(function()
 									quality = 0
 
 									lib.hideTextUI()
-									
+				
 								else
 									lib.notify({
 										title = 'Automobilis jau užimtas',
@@ -180,17 +182,8 @@ Citizen.CreateThread(function()
 								})
 								lib.hideTextUI()
 							end
-							
-							lib.hideTextUI()
-							
-							
-		
 						end
 					end
-					
-				
-				
-			
 			end
 			
 		else
@@ -212,11 +205,14 @@ Citizen.CreateThread(function()
 				if not pause and IsPedInAnyVehicle(playerPed) then
 					progress = progress +  1
 					--ESX.ShowNotification('~r~Meth production: ~g~~h~' .. progress .. '%')
-					lib.notify({
-						title = 'Progresas',
-						description = 'Amfos Gamyba ' .. progress .. '%',
-						position = 'top-center',
-						type = 'success'
+					lib.showTextUI('Progresas '.. progress .. '%  \n Kokybe ' .. quality.. ' atsimink jok kokybe bus dalinama per pus', {
+						position = "bottom-center",
+						icon = 'fa-solid fa-flask',
+						iconAnimation = 'bounce',
+						style = {
+							backgroundColor = '#E04131',
+							color = 'white'
+						}
 					})
 					Citizen.Wait(6000) 
 				end
@@ -227,10 +223,14 @@ Citizen.CreateThread(function()
 				if progress > 22 and progress < 24 then
 					pause = true
 					if selection == 0 then
-							lib.showTextUI('Propano vamzdis nutekėjo, ką daryti?  \n Z. Pataisykite juostele  \n X. Palikite tai būti  \n C. Pakeiskite  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+							lib.showTextUI('Propano vamzdis nutekėjo, ką daryti?  \n Z. Pataisykite juostele  \n X. Palikite tai būti  \n C. Pakeiskite  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+								icon = 'fa-solid fa-flask',
+								iconAnimation = 'bounce'
+							})
 					end
 					if selection == 1 then
-						lib.hideTextUI()
+						
 						print("Slected 1")
 						ESX.ShowNotification('Juosta tarsi sustabdė nuotėkį')
 						local pavyko = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -243,7 +243,7 @@ Citizen.CreateThread(function()
 					end
 				end
 					if selection == 2 then
-						lib.hideTextUI()
+						
 						print("Slected 2")
 						ESX.ShowNotification('Susprogo propano bakas, jūs sujaukėte...')
 						TriggerServerEvent('walker_methcar:pradeti', pos.x, pos.y, pos.z)
@@ -255,7 +255,7 @@ Citizen.CreateThread(function()
 						print('PIMPAM BAIGESI NIGERIO GYVENIMAS')
 					end
 					if selection == 3 then
-						lib.hideTextUI()
+						
 						print("Slected 3")
 						ESX.ShowNotification('Geras darbas, vamzdis nebuvo geros būklės')
 						local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -274,10 +274,14 @@ Citizen.CreateThread(function()
 				if progress > 30 and progress < 32 then
 					pause = true
 					if selection == 0 then
-							lib.showTextUI('Išpylėte butelį acetono ant žemės, ką daryti?  \n Z. Atidarykite langus, kad pašalintumėte kvapą  \n X. Palikti kaip yra  \n C. Uzsideti dujokauke  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+							lib.showTextUI('Išpylėte butelį acetono ant žemės, ką daryti?  \n Z. Atidarykite langus, kad pašalintumėte kvapą  \n X. Palikti kaip yra  \n C. Uzsideti dujokauke  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+								icon = 'fa-solid fa-flask fa-bounce',
+								iconAnimation = 'bounce'
+							})
 					end
 					if selection == 1 then
-						lib.hideTextUI()
+						
 						print("Slected 1")
 						ESX.ShowNotification('Jūs atidarėte langus, kad pašalintumėte kvapą')
 						local test = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -290,14 +294,14 @@ Citizen.CreateThread(function()
 						end
 					end
 					if selection == 2 then
-						lib.hideTextUI()
+						
 						print("Slected 2")
 						ESX.ShowNotification('Per daug įkvėpėte acetono')
 						pause = false
 						TriggerEvent('esx_methcar:drugged')
 					end
 					if selection == 3 then
-						lib.hideTextUI()
+						
 						print("Slected 3")
 						ESX.ShowNotification('Tai paprastas būdas išspręsti problemą... Manau')
 						SetPedPropIndex(playerPed, 1, 26, 7, true)
@@ -310,16 +314,20 @@ Citizen.CreateThread(function()
 				if progress > 38 and progress < 40 then
 					pause = true
 					if selection == 0 then
-							lib.showTextUI('Amfa per greitai tampa kieta, ką daryti?  \n Z. Padidinkite slėgį \n X. Pakelkite temperatūrą  \n C. Sumažinkite slėgį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+							lib.showTextUI('Amfa per greitai tampa kieta, ką daryti?  \n Z. Padidinkite slėgį \n X. Pakelkite temperatūrą  \n C. Sumažinkite slėgį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+								icon = 'fa-solid fa-flask fa-bounce',
+								iconAnimation = 'bounce'
+							})
 					end
 					if selection == 1 then
-						lib.hideTextUI()
+						
 						print("Slected 1")
 						ESX.ShowNotification('Jūs padidinote slėgį ir propanas pradėjo bėgti, jūs jį sumažinote ir kol kas viskas gerai')
 						pause = false
 					end
 					if selection == 2 then
-						lib.hideTextUI()
+						
 						print("Slected 2")
 						ESX.ShowNotification('Temperatūros pakėlimas padėjo...')
 						local test1 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -332,16 +340,16 @@ Citizen.CreateThread(function()
 						end
 					end
 					if selection == 3 then
-						lib.hideTextUI()
+						
 						print("Slected 3")
 						ESX.ShowNotification('Sumažinus slėgį viskas tik pablogėjo...')
 						local test2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test2 then
 						pause = false
-						quality = quality -2
+						quality = quality - 2
 						else 
 							pause = false
-							quality = quality -4
+							quality = quality - 4
 					end
 				end
 			end
@@ -351,11 +359,15 @@ Citizen.CreateThread(function()
 				if progress > 41 and progress < 43 then
 					pause = true
 					if selection == 0 then
-							lib.showTextUI('Netyčia įpylėte per daug acetono, ką daryti?  \n Z. Nieko nedaryk   \n X. Pabandykite jį išsiurbti naudodami švirkštą   \n C. Įpilkite daugiau ličio, kad subalansuotumėte   \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+							lib.showTextUI('Netyčia įpylėte per daug acetono, ką daryti?  \n Z. Nieko nedaryk   \n X. Pabandykite jį išsiurbti naudodami švirkštą   \n C. Įpilkite daugiau ličio, kad subalansuotumėte   \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+								icon = 'fa-solid fa-flask fa-bounce',
+								iconAnimation = 'bounce'
+							})
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Amfa nelabai kvepia acetonu')
 						local test3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test3 then
@@ -368,7 +380,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tai veikė, bet vis tiek per daug')
 						local test4 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test4 then
@@ -376,12 +388,12 @@ Citizen.CreateThread(function()
 						quality = quality - 0
 						else
 							pause = false
-							quality = quality -1
+							quality = quality - 1
 						end
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Sėkmingai subalansavote abi chemines medžiagas ir vėl gerai')
 						local test5 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test5 then
@@ -399,11 +411,15 @@ Citizen.CreateThread(function()
 				if progress > 46 and progress < 49 then
 					pause = true
 					if selection == 0 then
-							lib.showTextUI('Radai vandens dažų, ką darai?  \n Z. Pridėkite jį  \n X. Padėkite jį  \n C. Gerk tai  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+							lib.showTextUI('Radai vandens dažų, ką darai?  \n Z. Pridėkite jį  \n X. Padėkite jį  \n C. Gerk tai  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+								icon = 'fa-solid fa-flask fa-bounce',
+								iconAnimation = 'bounce'
+							})
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Gera mintis, žmonėms patinka spalvos')
 						local test6 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test6 then
@@ -416,13 +432,13 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Taip, tai gali sugadinti amfos skonį')
 						pause = false
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Jūs esate šiek tiek keistas ir svaigstate, bet viskas gerai')
 						pause = false
 					end
@@ -433,11 +449,15 @@ Citizen.CreateThread(function()
 				if progress > 55 and progress < 58 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Filtras užsikimšęs, ką daryti?  \n Z. Išvalykite jį suslėgtu oru  \n X. Pakeiskite filtrą  \n C. Nuvalykite jį naudodami dantų šepetėlį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Filtras užsikimšęs, ką daryti?  \n Z. Išvalykite jį suslėgtu oru  \n X. Pakeiskite filtrą  \n C. Nuvalykite jį naudodami dantų šepetėlį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Suslėgtas oras apipurškė skystą amfa ant taves')
 						local test7 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test7 then
@@ -450,7 +470,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tikriausiai geriausias pasirinkimas buvo jį pakeisti')
 						local test8 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test8 then
@@ -463,7 +483,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tai veikė gana gerai, bet vis tiek buvo purvinas')
 						local test9 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test9 then
@@ -481,11 +501,15 @@ Citizen.CreateThread(function()
 				if progress > 58 and progress < 60 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Išpylėte butelį acetono ant žemės, ką daryti?  \n Z. Atidarykite langus, kad pašalintumėte kvapą  \n 2. Palikite tai  \n 3. Uždėkite kaukę su oro filtru  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Išpylėte butelį acetono ant žemės, ką daryti?  \n Z. Atidarykite langus, kad pašalintumėte kvapą  \n X. Palikite tai  \n C. Uždėkite kaukę su oro filtru  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Jūs atidarėte langus, kad pašalintumėte kvapą')
 						local test10 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if test10 then
@@ -498,14 +522,14 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Per daug įkvėpėte acetono')
 						pause = false
 						TriggerEvent('esx_methcar:drugged')
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tai paprastas būdas išspręsti problemą... Manau')
 						SetPedPropIndex(playerPed, 1, 26, 7, true)
 						pause = false
@@ -517,10 +541,14 @@ Citizen.CreateThread(function()
 				if progress > 63 and progress < 65 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Propano vamzdis nutekėjo, ką daryti?  \n Z. Pataisykite juostele  \n X. Palikite tai būti  \n C. Pakeiskite  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Propano vamzdis nutekėjo, ką daryti?  \n Z. Pataisykite juostele  \n X. Palikite tai būti  \n C. Pakeiskite  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
-						lib.hideTextUI()
+						
 						print("Slected 1")
 						ESX.ShowNotification('Juosta tarsi sustabdė nuotėkį')
 						local test11 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -533,7 +561,7 @@ Citizen.CreateThread(function()
 						end	
 					end
 					if selection == 2 then
-						lib.hideTextUI()
+						
 						print("Slected 2")
 						ESX.ShowNotification('Susprogo propano bakas, jūs sujaukėte...')
 						TriggerServerEvent('walker_methcar:pradeti', pos.x, pos.y, pos.z)
@@ -545,7 +573,7 @@ Citizen.CreateThread(function()
 						print('PIMPAM BAIGESI NIGERIO GYVENIMAS')
 					end
 					if selection == 3 then
-						lib.hideTextUI()
+						
 						print("Slected 3")
 						ESX.ShowNotification('Geras darbas, vamzdis nebuvo geros būklės')
 						local test12 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
@@ -564,24 +592,28 @@ Citizen.CreateThread(function()
 				if progress > 71 and progress < 73 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Filtras užsikimšęs, ką daryti?  \n Z.Išvalykite jį suslėgtu oru  \n X. Pakeiskite filtrą  \n C. Nuvalykite jį naudodami dantų šepetėlį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Filtras užsikimšęs, ką daryti?  \n Z.Išvalykite jį suslėgtu oru  \n X. Pakeiskite filtrą  \n C. Nuvalykite jį naudodami dantų šepetėlį  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Suslėgtas oras apipurškė skystą metą')
 						local paejo = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if paejo then 
 						quality = quality - 2
 						pause = false
 						else
-							quality = quality -3
+							quality = quality - 3
 							pause = false
 						end
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tikriausiai geriausias pasirinkimas buvo jį pakeisti')
 						local paejo2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if paejo2 then
@@ -594,7 +626,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tai veikė gana gerai, bet vis tiek buvo purvinas')
 						local paejo3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if paejo3 then 
@@ -612,24 +644,28 @@ Citizen.CreateThread(function()
 				if progress > 76 and progress < 78 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Netyčia įpylėte per daug acetono, ką daryti?  \n Z. Nieko nedaryk  \n X. Pabandykite jį išsiurbti naudodami švirkštą  \n C. Įpilkite daugiau ličio, kad subalansuotumėte  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Netyčia įpylėte per daug acetono, ką daryti?  \n Z. Nieko nedaryk  \n X. Pabandykite jį išsiurbti naudodami švirkštą  \n C. Įpilkite daugiau ličio, kad subalansuotumėte  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Amfa nelabai kvepia acetonu')
 						local flipflop = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipflop then
 						quality = quality - 3
 						pause = false
 						else
-							quality = quality -4
+							quality = quality - 4
 							pause = false
 						end
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Tai veikė, bet vis tiek per daug')
 						local flipflop2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipflop2 then
@@ -637,12 +673,12 @@ Citizen.CreateThread(function()
 						quality = quality - 1
 						else
 							quality = quality - 2
-							pause = true
+							pause = false
 						end
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Sėkmingai subalansavote abi chemines medžiagas ir vėl gerai')
 						local flipflop3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipflop3 then
@@ -660,11 +696,15 @@ Citizen.CreateThread(function()
 				if progress > 82 and progress < 84 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Tau reikia nusišikti, ką darai?  \n Z. Pabandykite jį laikyti  \n X. Išeik į lauką ir nusišikti  \n C. nusišikti viduje  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Tau reikia nusišikti, ką darai?  \n Z. Pabandykite jį laikyti  \n X. Išeik į lauką ir nusišikti  \n C. nusišikti viduje  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Geras darbas, pirmiausia reikia dirbti, o vėliau')
 						local flipasirflopas = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas then
@@ -677,7 +717,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Kai buvote lauke, stiklas nukrito nuo stalo ir išsiliejo ant grindų...')
 						local flipasirflopas2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas2 then
@@ -690,7 +730,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Dabar oras kvepia šūdu, o amfa – šūdu')
 						local flipasirflopas3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas3 then
@@ -707,11 +747,15 @@ Citizen.CreateThread(function()
 				if progress > 88 and progress < 90 then
 					pause = true
 					if selection == 0 then
-						lib.showTextUI('Ar pridedate stiklo gabalėlių į amfa, kad atrodytų, kad turite daugiau?  \n Z. Taip!  \n X. Ne  \n C. Ką daryti, jei vietoj to į stiklą pridėsiu amfos?  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį')
+						lib.hideTextUI()
+						lib.showTextUI('Ar pridedate stiklo gabalėlių į amfa, kad atrodytų, kad turite daugiau?  \n Z. Taip!  \n X. Ne  \n C. Ką daryti, jei vietoj to į stiklą pridėsiu amfos?  \n Paspauskite pasirinkimo, kurį norite atlikti, numerį',{
+                            icon = 'fa-solid fa-flask fa-bounce',
+							iconAnimation = 'bounce'
+                        })
 					end
 					if selection == 1 then
 						print("Slected 1")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Dabar jūs turite dar keletą maišelių')
 						local nusibodo = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if nusibodo then 
@@ -724,7 +768,7 @@ Citizen.CreateThread(function()
 					end
 					if selection == 2 then
 						print("Slected 2")
-						lib.hideTextUI()
+						
 						ESX.ShowNotification('Esate geras narkotiku gamintojas, jūsų produktas yra aukštos kokybės')
 						local nusibodo2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if nusibodo2 then
@@ -737,7 +781,6 @@ Citizen.CreateThread(function()
 					end
 					if selection == 3 then
 						print("Slected 3")
-						lib.hideTextUI()
 						ESX.ShowNotification('Tai šiek tiek per daug, tai daugiau stiklo nei meta, bet gerai')
 						local nusibodo3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 						if nusibodo3 then
@@ -775,6 +818,12 @@ Citizen.CreateThread(function()
 				ESX.ShowNotification('Isvirete Amfetamina')
 				TriggerServerEvent('esx_methcar:finish', quality)
 				FreezeEntityPosition(LastCar, false)
+				local alert = lib.alertDialog({
+					header = 'Tau pavyko isvirti amfa',
+					content = 'Jus isvirete:  ' .. quality / 2 + rnd.. 'vienetu',
+					centered = true,
+					cancel = true
+				})
 			end	
 			
 		end
@@ -804,15 +853,33 @@ Citizen.CreateThread(function()
 		if pause == true then
 			if IsControlJustReleased(0, Keys['Z']) then
 				selection = 1
-				ESX.ShowNotification('Pasirinktote Z varijanta')
+				lib.notify({
+					title = nil,
+					position = 'top',
+					description = 'Pasirinktote Z varijanta',
+					type = 'success'
+				})
+				lib.hideTextUI()
 			end
 			if IsControlJustReleased(0, Keys['X']) then
 				selection = 2
-				ESX.ShowNotification('Pasirinktote X varijanta')
+				lib.notify({
+					title = nil,
+					position = 'top',
+					description = 'Pasirinktote X varijanta',
+					type = 'success'
+				})
+				lib.hideTextUI()
 			end
 			if IsControlJustReleased(0, Keys['C']) then
 				selection = 3
-				ESX.ShowNotification('Pasirinktote C varijanta')
+				lib.notify({
+					title = nil,
+					position = 'top',
+					description = 'Pasirinktote C varijanta',
+					type = 'success'
+				})
+				lib.hideTextUI()
 			end
 		end
 

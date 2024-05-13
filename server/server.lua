@@ -62,7 +62,8 @@ AddEventHandler('esx_methcar:finish', function(qualtiy)
 	print(qualtiy)
 	local rnd = math.random(-5, 5)
 	TriggerEvent('KLevels:addXP', _source, 20)
-	xPlayer.addInventoryItem('meth', math.floor(qualtiy / 2) + rnd)
+	xPlayer.addInventoryItem('meth', math.floor(qualtiy / 4) + rnd)
+	xPlayer.addInventoryItem('prastas_meth', math.floor(qualtiy / 2) + rnd)
 	
 end)
 
@@ -72,7 +73,7 @@ AddEventHandler('esx_methcar:blow', function(posx, posy, posz)
 	local xPlayers = ESX.GetPlayers()
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	for i=1, #xPlayers, 1 do
-		TriggerClientEvent('esx_methcar:blowup', xPlayers[i],posx, posy, posz)
+		TriggerClientEvent('walker_methcar:pradeti', xPlayers[i],posx, posy, posz)
 	end
 	xPlayer.removeInventoryItem('methlab', 1)
 end)

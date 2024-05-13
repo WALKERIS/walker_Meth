@@ -205,7 +205,7 @@ Citizen.CreateThread(function()
 				if not pause and IsPedInAnyVehicle(playerPed) then
 					progress = progress +  1
 					--ESX.ShowNotification('~r~Meth production: ~g~~h~' .. progress .. '%')
-					lib.showTextUI('Progresas '.. progress .. '%  \n Kokybe ' .. quality.. ' atsimink jok kokybe bus dalinama per pus', {
+					lib.showTextUI('Progresas '.. progress .. '%  \n Kokybe ' .. quality..'%', {
 						position = "bottom-center",
 						icon = 'fa-solid fa-flask',
 						iconAnimation = 'bounce',
@@ -248,6 +248,8 @@ Citizen.CreateThread(function()
 						ESX.ShowNotification('Susprogo propano bakas, jūs sujaukėte...')
 						TriggerServerEvent('walker_methcar:pradeti', pos.x, pos.y, pos.z)
 						SetVehicleEngineHealth(CurrentVehicle, 0.0)
+						AddExplosion(posx, posy, posz + 2,23, 20.0, true, false, 1.0, true)
+						xPlayer.removeInventoryItem('methlab', 1)
 						quality = 0
 						started = false
 						displayed = false
@@ -478,7 +480,7 @@ Citizen.CreateThread(function()
 						quality = quality + 3
 						else 
 							quality = quality + 2
-							pause = true
+							pause = false
 						end
 					end
 					if selection == 3 then
@@ -565,7 +567,9 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						ESX.ShowNotification('Susprogo propano bakas, jūs sujaukėte...')
 						TriggerServerEvent('walker_methcar:pradeti', pos.x, pos.y, pos.z)
+						AddExplosion(posx, posy, posz + 2,23, 20.0, true, false, 1.0, true)
 						SetVehicleEngineHealth(CurrentVehicle, 0.0)
+						xPlayer.removeInventoryItem('methlab', 1)
 						quality = 0
 						started = false
 						displayed = false

@@ -233,7 +233,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 1")
 						ESX.ShowNotification('Juosta tarsi sustabdė nuotėkį')
-						local pavyko = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local pavyko = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if pavyko then
 						quality = quality - 1
 						pause = false
@@ -260,7 +260,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 3")
 						ESX.ShowNotification('Geras darbas, vamzdis nebuvo geros būklės')
-						local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local success = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if success then
 						pause = false
 						quality = quality + 5
@@ -286,7 +286,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 1")
 						ESX.ShowNotification('Jūs atidarėte langus, kad pašalintumėte kvapą')
-						local test = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test then
 						quality = quality - 0
 						pause = false
@@ -332,7 +332,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 2")
 						ESX.ShowNotification('Temperatūros pakėlimas padėjo...')
-						local test1 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test1 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test1 then
 						quality = quality + 5
 						pause = false
@@ -345,7 +345,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 3")
 						ESX.ShowNotification('Sumažinus slėgį viskas tik pablogėjo...')
-						local test2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test2 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test2 then
 						pause = false
 						quality = quality - 2
@@ -371,7 +371,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Amfa nelabai kvepia acetonu')
-						local test3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test3 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test3 then
 						quality = quality - 2
 						pause = false
@@ -384,7 +384,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Tai veikė, bet vis tiek per daug')
-						local test4 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test4 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test4 then
 						pause = false
 						quality = quality - 0
@@ -397,7 +397,7 @@ Citizen.CreateThread(function()
 						print("Slected 3")
 						
 						ESX.ShowNotification('Sėkmingai subalansavote abi chemines medžiagas ir vėl gerai')
-						local test5 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test5 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test5 then
 						pause = false
 						quality = quality + 3
@@ -423,7 +423,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Gera mintis, žmonėms patinka spalvos')
-						local test6 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test6 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test6 then
 						quality = quality + 4
 						pause = false
@@ -461,7 +461,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Suslėgtas oras apipurškė skystą amfa ant taves')
-						local test7 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test7 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test7 then
 						quality = quality - 2
 						pause = false
@@ -474,7 +474,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Tikriausiai geriausias pasirinkimas buvo jį pakeisti')
-						local test8 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test8 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test8 then
 						pause = false
 						quality = quality + 3
@@ -487,7 +487,7 @@ Citizen.CreateThread(function()
 						print("Slected 3")
 						
 						ESX.ShowNotification('Tai veikė gana gerai, bet vis tiek buvo purvinas')
-						local test9 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test9 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test9 then
 						pause = false
 						quality = quality - 1
@@ -513,7 +513,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Jūs atidarėte langus, kad pašalintumėte kvapą')
-						local test10 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test10 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test10 then
 						quality = quality - 1
 						pause = false
@@ -553,7 +553,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 1")
 						ESX.ShowNotification('Juosta tarsi sustabdė nuotėkį')
-						local test11 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test11 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test11 then
 						quality = quality - 3
 						pause = false
@@ -580,7 +580,7 @@ Citizen.CreateThread(function()
 						
 						print("Slected 3")
 						ESX.ShowNotification('Geras darbas, vamzdis nebuvo geros būklės')
-						local test12 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local test12 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if test12 then
 						pause = false
 						quality = quality + 5
@@ -606,7 +606,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Suslėgtas oras apipurškė skystą metą')
-						local paejo = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local paejo = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if paejo then 
 						quality = quality - 2
 						pause = false
@@ -619,7 +619,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Tikriausiai geriausias pasirinkimas buvo jį pakeisti')
-						local paejo2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local paejo2 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if paejo2 then
 						pause = false
 						quality = quality + 3
@@ -632,7 +632,7 @@ Citizen.CreateThread(function()
 						print("Slected 3")
 						
 						ESX.ShowNotification('Tai veikė gana gerai, bet vis tiek buvo purvinas')
-						local paejo3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local paejo3 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if paejo3 then 
 						pause = false
 						quality = quality - 1
@@ -658,7 +658,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Amfa nelabai kvepia acetonu')
-						local flipflop = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipflop = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipflop then
 						quality = quality - 3
 						pause = false
@@ -671,7 +671,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Tai veikė, bet vis tiek per daug')
-						local flipflop2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipflop2 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipflop2 then
 						pause = false
 						quality = quality - 1
@@ -684,7 +684,7 @@ Citizen.CreateThread(function()
 						print("Slected 3")
 						
 						ESX.ShowNotification('Sėkmingai subalansavote abi chemines medžiagas ir vėl gerai')
-						local flipflop3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipflop3 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipflop3 then
 						pause = false
 						quality = quality + 3
@@ -710,7 +710,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Geras darbas, pirmiausia reikia dirbti, o vėliau')
-						local flipasirflopas = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipasirflopas = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas then
 						quality = quality + 1
 						pause = false
@@ -723,7 +723,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Kai buvote lauke, stiklas nukrito nuo stalo ir išsiliejo ant grindų...')
-						local flipasirflopas2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipasirflopas2 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas2 then
 						pause = false
 						quality = quality - 2
@@ -736,7 +736,7 @@ Citizen.CreateThread(function()
 						print("Slected 3")
 						
 						ESX.ShowNotification('Dabar oras kvepia šūdu, o amfa – šūdu')
-						local flipasirflopas3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local flipasirflopas3 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if flipasirflopas3 then
 						pause = false
 						quality = quality - 1
@@ -761,7 +761,7 @@ Citizen.CreateThread(function()
 						print("Slected 1")
 						
 						ESX.ShowNotification('Dabar jūs turite dar keletą maišelių')
-						local nusibodo = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local nusibodo = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if nusibodo then 
 						quality = quality + 1
 						pause = false
@@ -774,7 +774,7 @@ Citizen.CreateThread(function()
 						print("Slected 2")
 						
 						ESX.ShowNotification('Esate geras narkotiku gamintojas, jūsų produktas yra aukštos kokybės')
-						local nusibodo2 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local nusibodo2 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if nusibodo2 then
 						pause = false
 						quality = quality + 1
@@ -786,7 +786,7 @@ Citizen.CreateThread(function()
 					if selection == 3 then
 						print("Slected 3")
 						ESX.ShowNotification('Tai šiek tiek per daug, tai daugiau stiklo nei meta, bet gerai')
-						local nusibodo3 = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+						local nusibodo3 = lib.skillCheck({'easy', 'easy', 'easy'}, {'w', 'a', 's', 'd'})
 						if nusibodo3 then
 						pause = false
 						quality = quality - 1
@@ -824,7 +824,7 @@ Citizen.CreateThread(function()
 				FreezeEntityPosition(LastCar, false)
 				local alert = lib.alertDialog({
 					header = 'Tau pavyko isvirti amfa',
-					content = 'Jus isvirete:  ' .. quality / 2 + rnd.. 'vienetu',
+					content = 'Jus isvirete:  ' .. qualtiy * 1.5 .. 'vienetu',
 					centered = true,
 					cancel = true
 				})

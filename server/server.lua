@@ -15,7 +15,6 @@ AddEventHandler('esx_methcar:start', function()
 			local methlab = ox_inventory:Search(_source, 1, 'methlab')
 			xPlayer.removeInventoryItem('acetone', 5)
 			xPlayer.removeInventoryItem('lithium', 2)
-			local patvarumas ox_inventory:SetDurability(_source, methlab.slot, 0.10)
 			if patvarumas then
 				print("test pavyko")
 			else
@@ -62,8 +61,7 @@ AddEventHandler('esx_methcar:finish', function(qualtiy)
 	print(qualtiy)
 	local rnd = math.random(-5, 5)
 	TriggerEvent('KLevels:addXP', _source, 20)
-	xPlayer.addInventoryItem('meth', math.floor(qualtiy / 4) + rnd)
-	xPlayer.addInventoryItem('prastas_meth', math.floor(qualtiy / 2) + rnd)
+	xPlayer.addInventoryItem('meth', math.floor(qualtiy * 1.5) + rnd)
 	
 end)
 

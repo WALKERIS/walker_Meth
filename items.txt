@@ -1,0 +1,21 @@
+	['acetone'] = {
+		label = 'Acetonas',
+		weight = 200
+	},
+
+	['methlab'] = {
+    	label = 'Labaratorija',
+		-- description = 'VDK DUXAS',
+    	weight = 200,
+    	stack = false,
+    	consume = 0,
+    	allowArmed = true,
+    	decay = false,
+		durability = true,
+	},
+	
+	['lithium'] = {
+		label = 'Ličio baterijos',
+		weight = 200
+	},
+	

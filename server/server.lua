@@ -4,29 +4,35 @@ local ox_inventory = exports.ox_inventory
 
 RegisterServerEvent('esx_methcar:start')
 AddEventHandler('esx_methcar:start', function()
-	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-	
-	if xPlayer.getInventoryItem('acetone').count >= 5 and xPlayer.getInventoryItem('lithium').count >= 2 and xPlayer.getInventoryItem('methlab').count >= 1 then 
-		if xPlayer.getInventoryItem('meth').count >= 60 then
-				TriggerClientEvent('esx_methcar:notify', _source, "Jūs negalite turėti daugiau amfos")
-		else
-			TriggerClientEvent('esx_methcar:startprod', _source)
-			local methlab = ox_inventory:Search(_source, 1, 'methlab')
-			xPlayer.removeInventoryItem('acetone', 5)
-			xPlayer.removeInventoryItem('lithium', 2)
-			if patvarumas then
-				print("test pavyko")
-			else
-				print("Test nepavyko")
-			end
-		end		
-	else
-		TriggerClientEvent('esx_methcar:notify', _source, "Nepakanka atsargų pradėti gaminti amfa")
+    local _source = source
+    local playerInv = ox_inventory:GetInventory(_source)
+    
+    local acetone = ox_inventory:Search(_source, 'count', 'acetone') or 0
+    local lithium = ox_inventory:Search(_source, 'count', 'lithium') or 0
+    local methlab = ox_inventory:Search(_source, 'slots', 'methlab')[1]
 
-	end
-	
+    if acetone >= 5 and lithium >= 2 and methlab then
+
+        local currentDurability = methlab.metadata.durability or 100
+        local newDurability = currentDurability - 10
+
+
+        if newDurability > 0 then
+            exports.ox_inventory:SetDurability(playerInv.id, methlab.slot, newDurability)
+        else
+            ox_inventory:RemoveItem(_source, 'methlab', 1, nil, methlab.slot)
+        end
+
+
+        ox_inventory:RemoveItem(_source, 'acetone', 5)
+        ox_inventory:RemoveItem(_source, 'lithium', 2)
+        
+        TriggerClientEvent('esx_methcar:startprod', _source)
+    else
+        TriggerClientEvent('esx_methcar:notify', _source, "Nepakanka atsargų pradėti gaminti amfa")
+    end
 end)
+
 RegisterServerEvent('esx_methcar:stopf')
 AddEventHandler('esx_methcar:stopf', function(id)
 local _source = source
@@ -75,4 +81,3 @@ AddEventHandler('esx_methcar:blow', function(posx, posy, posz)
 	end
 	xPlayer.removeInventoryItem('methlab', 1)
 end)
-
